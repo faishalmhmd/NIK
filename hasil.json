@@ -1,0 +1,38 @@
+[
+  {
+    "nik": "1671141505070001",
+    "nama": "BINTANG PRATAMA",
+    "nkk": "167114**********",
+    "kabupaten": "KOTA PALEMBANG",
+    "kecamatan": "PLAJU",
+    "kelurahan": "TALANGPUTRI",
+    "tps": "21",
+    "alamat": "Lr. Karang Luhur",
+    "lat": "-3.018642",
+    "lon": "104.822148"
+  },
+  {
+    "nik": "1671141505070002",
+    "nama": "MUHAMMAD RIZKI",
+    "nkk": "167114**********",
+    "kabupaten": "KOTA PALEMBANG",
+    "kecamatan": "PLAJU",
+    "kelurahan": "PLAJU ILIR",
+    "tps": "16",
+    "alamat": "LORONG KESUMA BANGSA ",
+    "lat": "-3.000601",
+    "lon": "104.819816"
+  },
+  {
+    "nik": "1671141505070003",
+    "nama": "CANDRA PRATAMA",
+    "nkk": "167114**********",
+    "kabupaten": "KOTA PALEMBANG",
+    "kecamatan": "PLAJU",
+    "kelurahan": "PLAJU ULU",
+    "tps": "19",
+    "alamat": "Lr.Perguruan Dalam ",
+    "lat": " -3.0072782",
+    "lon": "104.8074608"
+  }
+]
