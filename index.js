@@ -4,22 +4,19 @@ import path from 'path'
 import promptSync from 'prompt-sync'
 import { provinsiList } from './provinsi.js'
 import { kabkot } from './kabupatenkota.js'
+import { kecamatan } from './kecamatan.js' // Tambahkan import kecamatan
 
 const prompt = promptSync()
-// const baseNik = '327322210605'
-const baseNik = '321708040300'
 const outputFile = path.resolve('./hasil.json') // ganti ke .json
 const collectedData = []
 const start = 0
 const length = 100
 
-
-
 console.log(`
    ____  ____  __  ________________________  ____  _____________   ________ __
   / __ )/ __ \\/ / / /_  __/ ____/ ____/ __ \\/ __ \\/ ____/ ____/ | / /  _/ //_/
- / __  / /_/ / / / / / / / __/ / /_  / / / / /_/ / /   / __/ /  |/ // // ,<   
-/ /_/ / _, _/ /_/ / / / / /___/ __/ / /_/ / _, _/ /___/ /___/ /|  // // /| |  
+ / __  / /_/ / / / / / / __/ / /_  / / / / / /_/ / /   / __/ /  |/ // // ,<   
+/ /_/ / _, _/ /_/ / / / /___/ __/ / /_/ / _, _/ /___/ /___/ /|  // // /| |  
 \\____/_/ |_|\\____/ /_/ /_____/_/    \\____/_/ |_|\\____/_____/_/ |_/___/_/ |_|  
 `)
 
@@ -41,6 +38,97 @@ do {
 
 const provinsiTerpilih = provinsiList.find(p => p.kode === provInput)
 console.log(`Provinsi yang dipilih: ${provinsiTerpilih.nama}`)
+
+// 3. Filter dan tampilkan kabupaten/kota dari provinsi terpilih
+const kabkotList = Object.entries(kabkot)
+  .filter(([kodeKab, _]) => kodeKab.startsWith(provInput))
+  .map(([kodeKab, namaKab]) => ({ kode: kodeKab, nama: namaKab }))
+
+console.log("List Kabupaten/Kota:")
+kabkotList.forEach(k => {
+  console.log(`${k.kode}: ${k.nama}`)
+})
+
+// 4. Input kabupaten/kota dengan validasi
+const validKabKode = kabkotList.map(k => k.kode)
+let kabInput
+do {
+  kabInput = prompt('Pilih kode kabupaten/kota [NNNN]: ').trim()
+  if (!validKabKode.includes(kabInput)) {
+    console.log(`Kode kabupaten/kota "${kabInput}" tidak valid. Silakan coba lagi.`)
+  }
+} while (!validKabKode.includes(kabInput))
+
+const kabupatenTerpilih = kabkotList.find(k => k.kode === kabInput)
+console.log(`Kabupaten/Kota yang dipilih: ${kabupatenTerpilih.nama}`)
+
+// 5. Filter dan tampilkan kecamatan dari kabupaten/kota terpilih
+const kecamatanList = Object.entries(kecamatan)
+  .filter(([kodeKec, _]) => kodeKec.startsWith(kabInput))
+  .map(([kodeKec, namaKec]) => ({ kode: kodeKec, nama: namaKec }))
+
+if (kecamatanList.length === 0) {
+  console.log("⚠️ Tidak ada data kecamatan untuk kabupaten/kota ini.")
+  process.exit(1)
+}
+
+console.log("List Kecamatan:")
+kecamatanList.forEach(k => {
+  console.log(`${k.kode}: ${k.nama}`)
+})
+
+// 6. Input kecamatan dengan validasi
+const validKecKode = kecamatanList.map(k => k.kode)
+let kecInput
+do {
+  kecInput = prompt('Pilih kode kecamatan [NNNNNN]: ').trim()
+  if (!validKecKode.includes(kecInput)) {
+    console.log(`Kode kecamatan "${kecInput}" tidak valid. Silakan coba lagi.`)
+  }
+} while (!validKecKode.includes(kecInput))
+
+const kecamatanTerpilih = kecamatanList.find(k => k.kode === kecInput)
+console.log(`Kecamatan yang dipilih: ${kecamatanTerpilih.nama}`)
+
+// 7. Input tanggal lahir (format: DD-MM-YYYY)
+let tanggalLahir
+let tanggal, bulan, tahun
+do {
+  tanggalLahir = prompt('Masukkan tanggal lahir [DD-MM-YYYY]: ').trim()
+  const match = tanggalLahir.match(/^(\d{2})-(\d{2})-(\d{4})$/)
+  if (match) {
+    tanggal = parseInt(match[1], 10)
+    bulan = parseInt(match[2], 10)
+    tahun = parseInt(match[3], 10)
+    if (tanggal >= 1 && tanggal <= 31 && bulan >= 1 && bulan <= 12 && tahun >= 1900 && tahun <= 2099) {
+      break
+    }
+  }
+  console.log('Format tanggal lahir tidak valid. Contoh: 17-08-1945')
+} while (true)
+
+// 8. Input jenis kelamin (singkat: L/P)
+let jenisKelamin
+do {
+  jenisKelamin = prompt('Jenis kelamin? [L/P]: ').trim().toUpperCase()
+  if (jenisKelamin === 'L' || jenisKelamin === 'P') break
+  console.log('Input hanya boleh "L" (laki-laki) atau "P" (perempuan)')
+} while (true)
+
+// 9. Susun baseNik
+const kodeProv = provInput.padStart(2, '0')
+const kodeKab = kabInput.slice(2, 4).padStart(2, '0')
+const kodeKec = kecInput.slice(4, 6).padStart(2, '0')
+
+let tglNik = tanggal
+if (jenisKelamin === 'P') tglNik += 40
+const tglNikStr = tglNik.toString().padStart(2, '0')
+const blnNikStr = bulan.toString().padStart(2, '0')
+const thnNikStr = tahun.toString().slice(-2)
+
+const baseNik = `${kodeProv}${kodeKab}${kodeKec}${tglNikStr}${blnNikStr}${thnNikStr}`
+
+console.log(`baseNik yang digunakan: ${baseNik}`)
 
 async function main() {
   const browser = await puppeteer.launch({ headless: false })

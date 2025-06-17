@@ -1,38 +1,50 @@
 [
   {
-    "nik": "1671141505070001",
-    "nama": "BINTANG PRATAMA",
+    "nik": "1671146505070002",
+    "nama": "MAYLA NURHASANA",
     "nkk": "167114**********",
     "kabupaten": "KOTA PALEMBANG",
     "kecamatan": "PLAJU",
-    "kelurahan": "TALANGPUTRI",
-    "tps": "21",
-    "alamat": "Lr. Karang Luhur",
-    "lat": "-3.018642",
-    "lon": "104.822148"
+    "kelurahan": "BAGUSKUNING",
+    "tps": "11",
+    "alamat": "Jln. Kopral Paiman Lr. Pertemuan RT 11 RW 04",
+    "lat": "-2.992168",
+    "lon": "104.813891"
   },
   {
-    "nik": "1671141505070002",
-    "nama": "MUHAMMAD RIZKI",
+    "nik": "1671146505070004",
+    "nama": "JAATSYAH MEKA",
     "nkk": "167114**********",
     "kabupaten": "KOTA PALEMBANG",
-    "kecamatan": "PLAJU",
-    "kelurahan": "PLAJU ILIR",
-    "tps": "16",
-    "alamat": "LORONG KESUMA BANGSA ",
-    "lat": "-3.000601",
-    "lon": "104.819816"
+    "kecamatan": "ILIR TIMUR SATU",
+    "kelurahan": "SUNGAIPANGERAN",
+    "tps": "7",
+    "alamat": " Jl. Kapt Anwar Sastro ",
+    "lat": "-2.97613",
+    "lon": "104.748602"
   },
   {
-    "nik": "1671141505070003",
-    "nama": "CANDRA PRATAMA",
+    "nik": "1671146505070005",
+    "nama": "POPI LISNA SARI DEWI",
+    "nkk": "167114**********",
+    "kabupaten": "BANYUASIN",
+    "kecamatan": "BANYUASIN I",
+    "kelurahan": "SUNGAI REBO",
+    "tps": "10",
+    "alamat": "TALANG BALI",
+    "lat": "-2.9985774",
+    "lon": "104.8564416"
+  },
+  {
+    "nik": "1671146505070006",
+    "nama": "NARISYA PUTRI",
     "nkk": "167114**********",
     "kabupaten": "KOTA PALEMBANG",
-    "kecamatan": "PLAJU",
-    "kelurahan": "PLAJU ULU",
-    "tps": "19",
-    "alamat": "Lr.Perguruan Dalam ",
-    "lat": " -3.0072782",
-    "lon": "104.8074608"
+    "kecamatan": "SUKARAMI",
+    "kelurahan": "TALANGBETUTU",
+    "tps": "28",
+    "alamat": "jalan Perum Puri Sejahtera RT 40",
+    "lat": "-2.90199",
+    "lon": "104.67994"
   }
 ]
